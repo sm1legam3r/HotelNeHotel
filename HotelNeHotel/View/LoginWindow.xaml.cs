@@ -53,8 +53,13 @@ namespace HotelNeHotel.View
                                             changeNewUserPasswordWindow.Show();
                                             this.Close();
                                         }
-                                        selectedUser.LastDateLogin = DateTime.Now;
-                                        
+                                        else
+                                        {
+                                            selectedUser.LastDateLogin = DateTime.Now;
+                                            ClientWindow clientWindow = new ClientWindow();
+                                            clientWindow.Show();
+                                            this.Close();
+                                        }
                                         break;
                                 }
                             }

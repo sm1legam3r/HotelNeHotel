@@ -25,11 +25,42 @@ namespace HotelNeHotel.View
         {
             InitializeComponent();
             this.user = user;
+            this.user.LastDateLogin = DateTime.Now;
         }
 
         private void ChangePassword_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if(OldPasswordTextBox.Text != "" && NewPasswordTextBox.Text != "" && RepeatNewPasswordTextBox.Text != "")
+            {
+                if(NewPasswordTextBox.Text == RepeatNewPasswordTextBox.Text)
+                {
+                    if(OldPasswordTextBox.Text == user.Password)
+                    {
+                        if(OldPasswordTextBox.Text != NewPasswordTextBox.Text)
+                        {
+                            ClientWindow clientWindow = new ClientWindow();
+                            clientWindow.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Текущий пароль совпадает с новым!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверный текущий пароль!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пароли не совпадают!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Вы заполнили не все поля!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
